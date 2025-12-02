@@ -1,0 +1,121 @@
+:root {
+  /* Primary Colors */
+  --primary-color: #00B894;
+  --primary-hover: #00a085;
+  --primary-light: #4dd0b7;
+  
+  /* Secondary Colors */
+  --secondary-color: #ff8c00;
+  --secondary-hover: #e67c00;
+  --secondary-light: #ffb347;
+  
+  /* Neutral Colors */
+  --white: #ffffff;
+  --light-gray: #f8f9fa;
+  --medium-gray: #6c757d;
+  --dark-gray: #343a40;
+    /* Accent Colors */
+  --success-color: #28a745;
+  --success-hover: #218838;
+  --info-color: #17a2b8;
+  --warning-color: var(--secondary-color);
+  --danger-color: #dc3545;
+  --error-color: #dc3545;
+  --error-hover: #c82333;
+  
+  /* Background Colors */
+  --bg-primary: var(--white);
+  --bg-secondary: var(--light-gray);
+  --bg-sidebar: var(--light-gray);
+  --bg-card: var(--white);
+  --card-background: var(--white);
+  --hover-background: #f8f9fa;
+  
+  /* Text Colors */
+  --text-primary: var(--dark-gray);
+  --text-secondary: var(--medium-gray);
+  --text-light: var(--white);
+  
+  /* Border Colors */
+  --border-color: var(--medium-gray);
+  --border-light: #dee2e6;
+}
+
+/* Auth Colors */
+:root {
+  --error-color: #e74c3c;
+  --error-background: #fdf2f2;
+  --success-background: #f0f9f0;
+  --text-color: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --border-color: #e1e8ed;
+  --hover-color: #f8f9fa;
+  --input-background: #ffffff;
+  --background-color: #ffffff;
+  --disabled-color: #bdc3c7;
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: var(--white);
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-hover);
+  border-color: var(--secondary-hover);
+}
+
+/* Card Styles */
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+}
+
+/* Sidebar Styles */
+.sidebar {
+  background-color: var(--bg-sidebar);
+  color: var(--text-primary);
+}
+
+/* Project Active Indicator */
+.project-active {
+  color: var(--primary-color);
+  border-left: 3px solid var(--primary-color);
+}
+
+/* Task Priority Indicators */
+.priority-high {
+  color: var(--secondary-color);
+  border-left: 3px solid var(--secondary-color);
+}
+
+.priority-medium {
+  color: var(--warning-color);
+}
+
+.priority-low {
+  color: var(--success-color);
+}
+
+/* Add Icons */
+.icon-add {
+  color: var(--primary-color);
+}
+
+.icon-category {
+  color: var(--secondary-color);
+}

@@ -1,0 +1,123 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Roboto:wght@700&display=swap');
+
+/* Arabic RTL Support */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Arabic Font Stack */
+body {
+  font-family: 'Inter', 'Roboto', 'Segoe UI', 'Cairo', 'Amiri', 'Scheherazade', Arial, sans-serif;
+}
+
+/* Inter Medium Font Styles */
+.inter-medium {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+.inter-medium-gray {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: var(--medium-gray);
+}
+
+.inter-medium-black {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: #000000;
+}
+
+/* Inter Bold Font Styles */
+.inter-bold {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  color: #000000;
+}
+
+/* Roboto Bold Font Styles */
+.roboto-bold {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+}
+
+.roboto-bold-gray {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  color: var(--medium-gray);
+}
+
+.roboto-bold-black {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  color: #000000;
+}
+
+/* RTL Layout Adjustments */
+[dir="rtl"] .sidebar {
+  border-right: none;
+  border-left: 1px solid var(--border-light);
+}
+
+[dir="rtl"] .project-active {
+  border-left: none;
+  border-right: 3px solid var(--primary-color);
+}
+
+[dir="rtl"] .priority-high {
+  border-left: none;
+  border-right: 3px solid var(--secondary-color);
+}
+
+/* Arabic Text Styling */
+.arabic-text {
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+}
+
+/* Arabic Headers */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Arabic Button Text */
+.btn {
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 6px;
+}
+
+/* Arabic Form Labels */
+label {
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 5px;
+}
+
+/* Arabic Placeholder Text */
+::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+/* Arabic Menu Items */
+.menu-item {
+  padding: 10px 15px;
+  color: var(--text-primary);
+  transition: background-color 0.2s ease;
+}
+
+.menu-item:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.menu-item.active {
+  background-color: var(--primary-light);
+  color: var(--text-primary);
+  font-weight: 600;
+}

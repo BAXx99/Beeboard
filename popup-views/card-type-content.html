@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeeBoard - الصفحة الرئيسية</title>
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/arabic.css">
+  <link rel="stylesheet" href="../css/all.min.css">
+  <link rel="stylesheet" href="../css/colors.css">
+  <link rel="stylesheet" href="../css/project_small_card.css">
+  <link rel="stylesheet" href="../css/project_info_card.css">
+  <link rel="stylesheet" href="../css/member_small_card.css">
+  <link rel="stylesheet" href="../css/main-bar.css">
+  <link rel="stylesheet" href="../css/card.css">
+  <link rel="stylesheet" href="../css/title-card.css">
+  <link rel="stylesheet" href="../css/side-bar.css">
+  <link rel="stylesheet" href="../css/sub-bar.css">
+
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <div class="modal-overlay">
+
+ <div class="card-type-modal" id="cardTypeModal" style="opacity: 1; display: flex; transition: opacity 0.3s;">
+            <div class="card-type-content">
+                <h3>اختر نوع البطاقة</h3>
+                <div class="card-type-options">
+                    <div class="card-type-option" data-type="normal">
+                        <div class="card-type-icon">
+                            <i class="material-icons">description</i>
+                        </div>
+                        <h4>بطاقة عادية</h4>
+                        <p>إنشاء بطاقة مهام عادية مع النص والوصف</p>
+                    </div>
+                    <div class="card-type-option" data-type="image">
+                        <div class="card-type-icon">
+                            <i class="material-icons">photo_library</i>
+                        </div>
+                        <h4>بطاقة صور</h4>
+                        <p>إنشاء بطاقة تحتوي على معرض صور</p>
+                    </div>
+                    <div class="card-type-option" data-type="ai">
+                        <div class="card-type-icon">
+                            <i class="material-icons">smart_toy</i>
+                        </div>
+                        <h4>بطاقة ذكية</h4>
+                        <p>إنشاء بطاقة بمساعدة الذكاء الاصطناعي</p>
+                    </div>
+                </div>
+                <div class="card-type-actions">
+                    <button type="button" id="cancelCardType">إلغاء</button>
+                   
+
+                </div>
+                
+            </div>
+        </div>
+        </div>
+ <script src="../js/CreateCard.js"></script>
+ <script src="../js/close.js"></script>
+ <script src="../js/popup.js"></script>
+</body>
+
+</html>

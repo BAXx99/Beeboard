@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeeBoard - نظام إدارة المشاريع</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/notification.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+     
+
+    <!-- Required Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <!-- Configuration Management (must load first) -->
+    <script src="../js/config.js"></script>
+    
+
+    <!-- Configuration Safety Check -->
+    <script>
+        // Ensure config is ready before any other scripts
+        (function () {
+            let attempts = 0;
+            const maxAttempts = 50;
+
+            function waitForConfig() {
+                if (window.appConfig && window.appConfig.getBackendUrl) {
+                    console.log('✅ Dashboard AppConfig ready');
+                    return true;
+                }
+
+                if (attempts++ < maxAttempts) {
+                    setTimeout(waitForConfig, 100);
+                } else {
+                    console.error('❌ Creating emergency dashboard config');
+                    const fallbackUrl = window.location.hostname === 'localhost' ?
+                        'https://beeboard-production-b072.up.railway.app/api' :
+                        'https://beeboard-production.up.railway.app/Backend';
+                    window.appConfig = {
+                        getBackendUrl: () => fallbackUrl,
+                        getApiUrl: () => fallbackUrl.replace('/Backend', ''),
+                        isLocal: () => window.location.hostname === 'localhost'
+                    };
+                    window.safeGetBackendUrl = () => window.appConfig.getBackendUrl();
+                }
+            }
+
+            waitForConfig();
+        })();
+    </script>
+
+  
+    <script src="../js/auth-new.js"></script>
+
+<body>
+
+
+    <nav class="navbar" style="background: rgba(255, 255, 255, 0.98); box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 20px;">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="imge/beeboard logo.jpeg" alt="BeeBoard" class="logo">
+                <span class="logo-text">BeeBoard</span>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn-secondary" onclick="redirectToLogin()" style="transform: translateY(0px);">
+                    <i class="material-icons">login</i>
+                    <span>تسجيل الدخول</span>
+                </button>
+                <button class="btn-primary" onclick="redirectToSignup()" style="transform: translateY(0px);">
+                    <i class="material-icons">person_add</i>
+                    <span>إنشاء حساب</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="hero-container">
+                <div class="hero-text">
+                    <h1 class="hero-title">إدارة مشاريعك بذكاء مع <span class="highlight">BeeBoard</span></h1>
+                    <p class="hero-description">منصة شاملة لإدارة المشاريع والفرق مع واجهة عربية حديثة وأدوات متقدمة
+                        لزيادة الإنتاجية</p>
+                    <div class="hero-buttons">
+                        <button class="btn-hero" onclick="redirectToSignup()">
+                            <i class="material-icons">rocket_launch</i>
+                            <span>ابدأ الأن</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="imge/dashboard beeboard.jpeg" alt="BeeBoard Dashboard" class="dashboard-preview">
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="section-container">
+                <h2 class="section-title">ميزات متقدمة لإدارة فعالة</h2>
+                <div class="features-grid">
+                    <div class="feature-card"
+                        style="opacity: 1; transform: translateY(0px); transition: opacity 0.6s, transform 0.6s;">
+                        <div class="feature-icon">
+                            <i class="material-icons primary">dashboard</i>
+                        </div>
+                        <h3>إدارة البطاقات</h3>
+                        <p>نظم مهامك ومشاريعك بطريقة بصرية سهلة مع نظام البطاقات المتقدم</p>
+
+                    </div>
+                    <div class="feature-card"
+                        style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                        <div class="feature-icon">
+                            <i class="material-icons primary">group</i>
+                        </div>
+                        <h3>إدارة الفرق</h3>
+                        <p>تعاون مع فريقك بسهولة مع نظام الأدوار والصلاحيات المتقدم</p>
+
+                    </div>
+                    <div class="feature-card"
+                        style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                        <div class="feature-icon">
+                            <i class="material-icons primary">chat</i>
+                        </div>
+                        <h3>التعليقات المباشرة</h3>
+                        <p>تواصل مع فريقك مباشرة على البطاقات والمهام</p>
+
+                    </div>
+                    <div class="feature-card"
+                        style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                        <div class="feature-icon">
+                            <i class="material-icons primary">local_offer</i>
+                        </div>
+                        <h3>نظام الوسوم</h3>
+                        <p>صنف وفلتر مهامك بسهولة باستخدام نظام الوسوم الذكي</p>
+
+                    </div>
+                    <div class="feature-card"
+                        style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                        <div class="feature-icon">
+                            <i class="material-icons primary">analytics</i>
+                        </div>
+                        <h3>تتبع التقدم</h3>
+                        <p>راقب تقدم مشاريعك مع لوحات تحكم تفاعلية</p>
+
+                    </div>
+                    <div class="feature-card"
+                        style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                        <div class="feature-icon">
+                            <i class="material-icons material-icons-primary">security</i>
+                        </div>
+                        <h3>أمان متقدم</h3>
+                        <p>حماية بيانات مشاريعك مع نظام أمان متقدم ومصادقة ثنائية</p>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="showcase-section">
+            <div class="section-container">
+                <h2 class="section-title">شاهد BeeBoard في العمل</h2>
+                <div class="showcase-tabs">
+                    <button class="tab-btn active" onclick="showTab('dashboard')">لوحة التحكم</button>
+                    <button class="tab-btn" onclick="showTab('projects')">إدارة المشاريع</button>
+                    <button class="tab-btn" onclick="showTab('cards')">البطاقات والمهام</button>
+                </div>
+                <div class="showcase-content">
+                    <div class="tab-content active" id="dashboard-tab">
+                        <img src="imge/main dashboard.jpeg" alt="لوحة التحكم الرئيسية" class="showcase-image">
+                    </div>
+                    <div class="tab-content" id="projects-tab">
+                        <img src="imge/project management.jpeg" alt="إدارة المشاريع" class="showcase-image">
+                    </div>
+                    <div class="tab-content" id="cards-tab">
+                        <img src="imge/tasks and cards.jpeg" alt="البطاقات والمهام" class="showcase-image">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-container">
+                <h2 class="cta-title">ابدأ رحلتك مع BeeBoard اليوم</h2>
+                <p class="cta-description">انضم لآلاف المستخدمين الذين يديرون مشاريعهم بكفاءة أكبر</p>
+                <div class="cta-buttons">
+                    <button class="btn-cta-primary" onclick="redirectToSignup()">
+                        <i class="material-icons">play_arrow</i>
+                        <span>ابدأ مجاناً الآن</span>
+                    </button>
+                    <button class="btn-cta-secondary" onclick="redirectToLogin()">
+                        <i class="material-icons">login</i>
+                        <span>لديك حساب؟ سجل دخولك</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="imge/beeboard down logo.jpeg" alt="BeeBoard" class="logo">
+                    <span class="logo-text">BeeBoard</span>
+                </div>
+                <p class="footer-description">نظام إدارة المشاريع الأكثر تطوراً في الوطن العربي</p>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 BeeBoard. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal (hidden by default) -->
+    <div class="auth-modal hidden" id="loginModal">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h2>تسجيل الدخول</h2>
+                <button class="close-btn" onclick="closeAuthModal()">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <div id="authMessages"></div>
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">البريد الإلكتروني</label>
+                    <input type="email" id="loginEmail" name="email" required="">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">كلمة المرور</label>
+                    <input type="password" id="loginPassword" name="password" required="">
+                </div>
+                <button type="submit" class="auth-btn" id="loginBtn">تسجيل الدخول</button>
+            </form>
+            <div class="auth-switch">
+                <p>ليس لديك حساب؟ <a href="#" onclick="showSignup()">إنشاء حساب جديد</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="auth-modal hidden" id="signupModal">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h2>إنشاء حساب جديد</h2>
+                <button class="close-btn" onclick="closeAuthModal()">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <div id="authMessages2"></div>
+            <form class="auth-form" id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">الاسم</label>
+                    <input type="text" id="signupName" name="name" required="">
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">البريد الإلكتروني</label>
+                    <input type="email" id="signupEmail" name="email" required="">
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">كلمة المرور</label>
+                    <input type="password" id="signupPassword" name="password" required="">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">تأكيد كلمة المرور</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required="">
+                </div>
+                <button type="submit" class="auth-btn" id="signupBtn">إنشاء حساب</button>
+            </form>
+            <div class="auth-switch">
+                <p>لديك حساب بالفعل؟ <a href="#" onclick="showLogin()">تسجيل الدخول</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,263 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F9F9F9;
+    font-family: 'Segoe UI', 'Cairo', 'Amiri', Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.main-content {
+    padding: 20px;
+    min-height: calc(100vh - 60px);
+    overflow-x: hidden;
+    transition: margin-right 0.3s ease;
+}
+
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: var(--text-primary);
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.title-card-bar {
+  position: relative;
+  width: calc(100% - 32px);
+  padding: 16px 0;
+  margin: 16px auto;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  border-radius: 22px;
+  border-top: 4px solid orange;
+}
+
+.center-button {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    background: #00bfa5;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 12px;
+    color: white;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    cursor: pointer;
+    margin: 0;
+}
+
+.arrow-down-title-cad {
+    filter: brightness(0) invert(1);
+    width: 38px;
+    height: 28px;
+}
+
+.title-card-right {
+  position: absolute;
+  right: 16px;
+  top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  direction: rtl;
+}
+
+.title-card-label {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.title-card-count {
+  background: #e0e0e0;
+  border-radius: 100%;
+  font-size: 14px;
+}
+
+.add-btn {
+  background: #00bfa5;
+  font-size: 20px;
+  border: 8px solid #00bfa5;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+.card-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 20px;
+  direction: rtl;
+  transition: grid-template-columns 0.3s ease;
+}
+
+/* Cards grid adjustment when sidebar is open */
+body.sidebar-open .card-grid {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding: 12px 12px 0;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.card-menu {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.card-image-body {
+  width: 453px;
+  height: 453px;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background: transparent;
+}
+
+.card-image-body img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+
+.card-description {
+  font-size: 14px;
+  color: #555;
+  padding: 8px 14px 14px 14px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  min-height: 1.5em;
+}
+
+/* Full description display in create card modal and detail modal */
+.create-card-modal .cardDescription,
+.create-card-modal #cardDescription,
+.card-detail-modal .card-description-detail {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+  /* No truncation - show full content */
+  display: block;
+  overflow: visible;
+  text-overflow: unset;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  -webkit-box-orient: unset;
+  max-height: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.three-dots {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.three-dots:hover {
+    background: #f5f5f5;
+}
+
+.dot {
+    width: 4px;
+    height: 4px;
+    background: #888;
+    border-radius: 50%;
+}
+
+/* Dropdown Menu Styles */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: -120px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    min-width: 120px;
+    display: none;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    border: none;
+    background: none;
+    width: 220px;
+    text-align: right;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background: #f5f5f5;
+}
+
+.dropdown-item.delete {
+    color: #d32f2f;
+}
+
+.dropdown-item.delete:hover {
+    background: #ffebee;
+}
+
+.no-cards {
+    padding: 40px 20px;
+    text-align: center;
+    color: #888;
+    font-style: italic;
+}
+
+.title-card-container {
+    margin-bottom: 20px;
+}

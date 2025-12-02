@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تعديل المشروع</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #eee;
+      margin: 0;
+      padding: 0;
+    }
+
+    .modal {
+     
+      width: 800px;
+      margin: 80px auto;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      position:relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      font-size: 22px;
+      color: #444;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .modal h2 {
+      margin-top: 0;
+      font-size: 24px;
+      text-align: right;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 20px;
+      text-align: right;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 8px;
+      font-size: 15px;
+      box-sizing: border-box;
+    }
+
+    .editor-container {
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    #quill-editor {
+      height: 200px;
+      background: white;
+    }
+
+    .frame-box {
+      border: 1px solid #ccc;
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 10px;
+      min-height: 80px;
+      text-align: right;
+      font-size: 15px;
+      color: #333;
+      width: 95%;
+      max-width: 100%;
+    }
+
+    .info-box {
+      background-color: #eefaf6;
+      padding: 16px;
+      margin-top: 25px;
+      border-radius: 10px;
+      font-size: 14px;
+      color: #333;
+      text-align: right;
+      border: none !important;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-top: 35px;
+    }
+
+    .btn {
+      width: fit-content;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .btn.green {
+      background-color: #27ae60;
+    }
+
+    .btn.red {
+      background-color: #e74c3c;
+    }
+
+    .ql-toolbar.ql-snow {
+      background-color: #f5f5f5;
+      border-radius: 5px 5px 0 0;
+      width: 100%;
+      font-family: 'Inter';
+      border: 1px solid #ccc;
+      border-bottom: 0.5px solid #bbb;
+      direction: rtl;
+    }
+
+    .ql-container.ql-snow {
+      border: 1px solid #ccc;
+      border-top: none;
+      border-radius: 0 0 5px 5px;
+      background-color: #f5f5f5;
+      direction: rtl;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+    }
+
+    .ql-editor {
+      text-align: right;
+      min-height: 150px;
+    }
+
+    .ql-editor::before {
+      font-style: normal !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="modal">
+    <button class="close-btn">&times;</button>
+    <h2>تعديل المشروع</h2>
+
+    <label for="project-name">اسم المشروع *</label>
+    <input type="text" id="project-name" placeholder="اسم المشروع">
+
+    <label>وصف المشروع</label>
+    <div class="editor-container">
+      <div id="editor-container"></div>
+    </div>
+
+    <label for="image-link">رابط الصورة</label>
+    <input type="text" id="image-link" placeholder="رابط الصورة">
+
+    <label>الأعضاء</label>
+    <div class="frame-box">
+      <strong>خطوتك القادمة:</strong>
+      <div>بعد إنشاء المشروع، ستتمكن من بناء فريقك! يمكنك:</div>
+      <ul style="padding-right: 20px; margin-top: 0;">
+        <li>إرسال دعوات عبر البريد الإلكتروني للأعضاء الجدد</li>
+        <li>تحديد أدوار ومسؤوليات كل عضو في الفريق</li>
+        <li>إدارة صلاحيات الوصول لجميع أعضاء المشروع</li>
+      </ul>
+      <div class="info-box">
+        💡 نصيحة: ابدأ بإنشاء المشروع أولًا ثم ادعُ فريقك للانضمام!
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button class="btn green">إنشاء المشروع</button>
+      <button class="btn red">إلغاء</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var quill = new Quill('#editor-container', {
+        theme: 'snow',
+        placeholder: 'أضف وصفًا مفصلًا للمشروع...',
+        modules: {
+          toolbar: [
+            [{ header: [1, 2, false] }],
+            ['bold', 'italic', 'underline'],
+            [{ list: 'ordered' }, { list: 'bullet' }],
+            ['link', 'image'],
+            ['clean']
+          ]
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

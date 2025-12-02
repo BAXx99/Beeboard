@@ -1,0 +1,393 @@
+/* Sub Bar Component Styles */
+
+.sub-bar {
+    height: 64px;
+    margin: 0 16px;
+    border-radius: 22px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 1;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.sub-bar-general {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 16px;
+    order: 1;
+    flex-shrink: 0;
+}
+
+.rhombus {
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary-color);
+    transform: rotate(45deg);
+    margin-bottom: 4px;
+}
+
+.sub-bar-general-button {
+    height: 40px;
+    min-width: 60px;
+    width: auto;
+    padding: 0 16px;
+    background-color: white;
+    border: none;
+    border-radius: 16px;
+    color: var(--medium-gray);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.sub-bar-general-button.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.sub-bar-general-title {
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 4px;
+    color: inherit;
+}
+
+.create-sub-button {
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    border-radius: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    margin-right: 16px;
+    order: 0;
+    flex-shrink: 0;
+}
+
+.create-sub-button:hover {
+    background-color: var(--primary-color);
+}
+
+.create-sub-button:hover .sub-button-icon {
+    filter: brightness(0) invert(1);
+}
+
+.sub-button-icon {
+    width: 18px;
+    height: 18px;
+    filter: brightness(0) saturate(100%) invert(70%) sepia(77%) saturate(2400%) hue-rotate(118deg) brightness(0.9);
+    transition: filter 0.2s ease;
+}
+
+.sub-bar-category {
+    height: 63px;
+    margin: 0 16px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    min-width: 200px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    order: 2;
+    flex: 1;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.sub-bar-category::-webkit-scrollbar {
+    display: none; /* WebKit browsers (Chrome, Safari, etc.) */
+}
+
+.sub-bar-category-button {
+    height: 40px;
+    min-width: 98px;
+    width: auto;
+    padding: 0 16px;
+    background-color: white;
+    border: none;
+    border-radius: 16px;
+    color: var(--medium-gray);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.sub-bar-category-button.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.sub-bar-category-button:hover:not(.active) {
+    background-color: var(--primary-hover);
+    color: white;
+}
+
+.sub-bar-category-title {
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 4px;
+    color: inherit;
+}
+
+/* Sub Bar Three dots styling */
+.sub-bar .three-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    cursor: pointer;
+    position: relative;
+    order: 3;
+    margin-right: auto;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+    margin-left: 6px;
+}
+
+.sub-bar .three-dots i {
+    color: var(--medium-gray);
+    font-size: 20px;
+    transition: color 0.2s ease;
+}
+
+.sub-bar .three-dots:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.sub-bar .three-dots:hover i {
+    color: var(--primary-color);
+}
+
+.sub-bar .three-dots.active {
+    background-color: var(--primary-color);
+    border-radius: 12px;
+}
+
+.sub-bar .three-dots.active i {
+    color: white;
+}
+
+/* Edit mode styling for sub-bar */
+.sub-bar.edit-mode {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.sub-bar.edit-mode .sub-bar-category {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    transform: none;
+}
+
+.sub-bar.edit-mode .sub-bar-category-button {
+    background-color: var(--secondary-color);
+    border: 2px dashed white;
+    animation: pulse 1s infinite;
+    transform: none;
+}
+
+.sub-bar.edit-mode .sub-bar-category-button:hover {
+    background-color: var(--primary-hover);
+    transform: none;
+}
+
+/* No categories message */
+.no-sub-categories {
+    padding: 10px 16px;
+    color: var(--medium-gray);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    background-color: white;
+    border-radius: 16px;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+/* Popup overlay */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1999;
+    display: none;
+}
+
+/* Sub category popup styling */
+.sub-category-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    padding: 20px;
+    z-index: 2000;
+    width: 280px;
+    max-width: 90vw;
+    display: none;
+}
+.sub-category-popup2 {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    padding: 20px;
+    z-index: 2000;
+    width: 280px;
+    max-width: 90vw;
+    display: none;
+}
+
+.sub-category-popup h3 {
+    margin: 0 0 15px 0;
+    color: var(--text-primary);
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+}
+.sub-category-popup2 h3 {
+    margin: 0 0 15px 0;
+    color: var(--text-primary);
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.sub-category-popup input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+.sub-category-popup2 input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.sub-category-popup input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(52, 168, 83, 0.2);
+}
+.sub-category-popup2 input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(52, 168, 83, 0.2);
+}
+
+.category-popup-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+.category-popup2-buttons {
+    display: flex;
+    gap: 50px;
+    justify-content: flex-end;
+}
+
+
+.popup-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+.popup2-btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.popup-btn.cancel {
+    background-color: #f1f3f4;
+    color: #5f6368;
+}
+
+.popup-btn.cancel:hover {
+    background-color: #e8eaed;
+}
+
+.popup-btn.save {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.popup-btn.save:hover {
+    background-color: var(--primary-hover);
+}
+
+.popup-btn.delete {
+    background-color: #ea4335;
+    color: white;
+}
+
+.popup-btn.delete:hover {
+    background-color: #d93025;
+}
+.popup2-btn.save{
+      background-color: var(--primary-color);
+    color: white;
+}
+.popup-btn2 {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+.popup2-btn.save:hover {
+    background-color: var(--primary-hover);
+}
+
+

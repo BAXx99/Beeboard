@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeeBoard - الصفحة الرئيسية</title>
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/arabic.css">
+  <link rel="stylesheet" href="../css/all.min.css">
+  <link rel="stylesheet" href="../css/colors.css">
+
+  <link rel="stylesheet" href="../css/project_info_card.css">
+  <link rel="stylesheet" href="../css/member_small_card.css">
+  <link rel="stylesheet" href="../css/main-bar.css">
+  <link rel="stylesheet" href="../css/card.css">
+  <link rel="stylesheet" href="../css/title-card.css">
+  <link rel="stylesheet" href="../css/side-bar.css">
+  <link rel="stylesheet" href="../css/sub-bar.css">
+
+
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
+<body data-base-url="https://beeboard-production-b072.up.railway.app/api" data-project-id="1234">
+  >
+
+  <!-- Project Info Card Popup Root -->
+  <div id="project-info-root">
+    <div id="project-info-modal" class="project-info-modal">
+      <div class="project-info-content">
+        <span class="close-btn" id="closeProjectInfo">×</span>
+
+        <!-- Normal View -->
+        <div id="normalView">
+          <h2 id="projectInfoName">اسم المشروع</h2>
+          <p id="projectInfoDesc">وصف المشروع هنا...</p>
+          <img id="projectInfoImage" src="" alt="Project Image"
+            style="display:none; max-width:100%; height:auto; margin:10px 0;">
+          <div class="project-info-members">
+            <h3>الأعضاء</h3>
+            <ul id="projectInfoMembers"></ul>
+          </div> <button id="editProjectBtn" style="display:none;">تعديل المشروع</button>
+          <button id="leaveProjectBtn" class="leave-project-btn" style="display:none;">مغادرة المشروع</button>
+        </div>
+        <!-- Admin Edit View -->
+        <div id="editView" style="display:none;">
+          <h2>تعديل المشروع</h2>
+          <div class="edit-form"> <label for="editProjectName">اسم المشروع *</label>
+            <input type="text" id="editProjectName" placeholder="اسم المشروع" required=""><label
+              for="editProjectDesc">وصف المشروع</label>
+            <div class="description-editor">
+              <div class="editor-toolbar">
+                <button type="button" class="format-btn" data-format="bold" title="Bold"><strong>B</strong></button>
+                <button type="button" class="format-btn" data-format="italic" title="Italic"><em>I</em></button>
+                <button type="button" class="format-btn" data-format="underline" title="Underline"><u>U</u></button>
+                <span class="toolbar-separator"></span>
+                <button type="button" class="format-btn" data-format="insertUnorderedList" title="Bullet List">•
+                  List</button>
+                <button type="button" class="format-btn" data-format="insertOrderedList" title="Numbered List">1.
+                  List</button>
+                <span class="toolbar-separator"></span>
+                <button type="button" class="format-btn" data-format="createLink" title="Add Link">🔗</button>
+                <button type="button" class="format-btn" data-format="removeFormat"
+                  title="Clear Formatting">Clear</button>
+              </div>
+              <div id="editProjectDesc" contenteditable="true" class="rich-editor"
+                placeholder="أضف وصفاً مفصلاً للمشروع... يمكنك استخدام التنسيق الغني لجعل الوصف أكثر وضوحاً"></div>
+            </div>
+
+            <label for="editProjectUrl">رابط الصورة</label>
+            <input type="url" id="editProjectUrl" placeholder="رابط الصورة">
+          </div>
+
+          <div class="project-info-members">
+            <h3>الأعضاء</h3>
+            <ul id="editProjectMembers"></ul>
+            <div class="member-hint"
+              style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 20px; border-radius: 12px; margin-top: 15px; border-left: 4px solid #00B894; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                <strong style="color: #495057; font-size: 16px;">خطوتك القادمة:</strong>
+              </div>
+              <p style="margin: 0 0 10px 0; color: #6c757d; font-size: 14px; line-height: 1.6;">
+                بعد إنشاء المشروع، ستتمكن من بناء فريقك! يمكنك:
+              </p>
+              <ul style="margin: 0; padding-right: 20px; color: #6c757d; font-size: 14px; line-height: 1.6;">
+                <li>إرسال دعوات عبر البريد الإلكتروني للأعضاء الجدد</li>
+                <li>تحديد أدوار ومسؤوليات كل عضو في الفريق</li>
+                <li>إدارة صلاحيات الوصول لجميع أعضاء المشروع</li>
+              </ul>
+              <div style="background: rgba(0, 184, 148, 0.1); padding: 8px 12px; border-radius: 6px; margin-top: 12px;">
+                <small style="color: #00B894; font-weight: 500;">💡 نصيحة: ابدأ بإنشاء المشروع أولاً، ثم ادع فريقك
+                  للانضمام!</small>
+              </div>
+            </div>
+          </div>
+          <div class="edit-actions">
+            <button type="button" id="saveProjectBtn">حفظ التغييرات</button>
+            <button type="button" id="cancelEditBtn">إلغاء</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Header placeholder -->
+  <div id="header-container">
+    <header class="main-header">
+      <div class="header-container">
+        <!-- Project Card Section -->
+        <div class="project-section">
+          <div class="small-card project-card">
+            <div class="card-content">
+              <div class="arrow-section" id="arrow-section">
+                <i class="material-icons arrow-down">keyboard_arrow_down</i>
+              </div>
+              <div class="text-section">
+                <div class="title">Simple project</div>
+              </div>
+              <div class="image-section">
+                <div class="card-image" id="project-card-image">
+                  <div class="avatar-circle" style="
+            width: 33px; 
+            height: 33px; 
+            background-color: #6366F1; 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            border-radius: 50%; 
+            font-weight: 600; 
+            font-family: 'Inter', sans-serif;
+        ">S</div>
+                </div>
+              </div>
+            </div>
+            <!-- Project Dropdown -->
+            <div class="project-dropdown" id="projectDropdown"
+              style="display: none; visibility: hidden; opacity: 0; position: absolute; z-index: 99999; background-color: white; border: 1px solid rgb(204, 204, 204); border-radius: 8px; box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 12px; top: 100%; right: 0px; width: 250px; margin-top: 4px;">
+              <div class="dropdown-header">
+                <h4>مشاريعي</h4>
+              </div>
+              <div class="dropdown-content" id="projectDropdownContent">
+                <div class="dropdown-item " data-project-id="22" data-project-name="d">
+                  <div class="project-info">
+                    <div class="project-name">Basil</div>
+                    <div class="project-role">owner</div>
+                    <div class="project-members">1 عضو</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Members Cards Section -->
+        <div class="members-section">
+          <div class="small-card">
+            <div class="card-content">
+              <div class="text-section">
+                <div class="title">Basil</div>
+                <div class="role"></div>
+              </div>
+              <div class="image-section">
+                <div class="card-image" id="member-card-image-0">
+                  <div class="avatar-circle" style="
+            width: 33px; 
+            height: 33px; 
+            background-color: #84CC16; 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            border-radius: 50%; 
+            font-weight: 600; 
+            font-family: 'Inter', sans-serif;
+        ">B</div>
+                </div>
+              </div>
+              <span class="owner-tag">مالك</span>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Logo Section -->
+        <div class="logo-section">
+          <img src="imge/beeboard logo.jpeg" alt="BeeBoard Logo" class="logo">
+        </div>
+      </div>
+    </header>
+  </div>
+  <!-- Main Bar placeholder -->
+  <div id="main-bar-container" style="display: block;">
+    <!-- Main Bar Component -->
+    <div class="main-bar">
+      <div class="three-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <div class="create-button-container">
+        <button onclick="showPopup('popup-views/main-category-popup.html')" class="create-button">
+          <img src="imge/plus (1).svg" alt="Plus" class="button-icon">
+          <span class="button-text">إنشاء</span>
+        </button>
+      </div>
+      <div class="main-bar-category">
+        <button class="main-bar-category-button active" data-category-id="33" data-category-name="مهام">
+          <span class="main-bar-category-title">مهام</span>
+        </button>
+        <button class="main-bar-category-button" data-category-id="34" data-category-name="ddd">
+          <span class="main-bar-category-title">Development</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Sub Bar placeholder -->
+  <div id="sub-bar-container" style="display: block;"><!-- Sub Bar Component -->
+    <div class="sub-bar">
+      <div class="sub-bar-manage">
+        <button class="manage-sub-button" onclick="showPopup('popup-views/sub-bar-manage.html')">
+          <i class="material-icons">settings</i>
+        </button>
+      </div>
+      <div class="sub-bar-general">
+        <div class="rhombus"></div>
+        <button class="sub-bar-general-button active" onclick="window.handleGeneralButtonClick &amp;
+           
+          window.handleGeneralButtonClick(event)" style="pointer-events: auto; cursor: pointer; z-index: 10;">
+          <span class="sub-bar-general-title">عام</span>
+        </button>
+      </div>
+      <div class="create-sub-button-container">
+        <button onclick="showPopup('popup-views/sub-category-popup.html')" class="create-sub-button">
+          <img src="imge/plus (1).svg" alt="Plus" class="sub-button-icon">
+        </button>
+      </div>
+
+      <button class="sub-bar-category">
+        <span class="no-sub-categories">لا توجد فئات فرعية</span>
+      </button>
+
+    </div>
+
+    <style>
+      .no-sub-categories {
+        font-size: 20px;
+        font-weight: 500;
+        font-family: 'Inter', sans-serif;
+        margin-bottom: 4px;
+        color: inherit;
+      }
+
+      .sub-bar-category {
+        height: 40px;
+        min-width: 98px;
+        width: auto;
+        padding: 0 16px;
+        background-color: rgba(237, 231, 231, 0);
+        border: none;
+        border-radius: 16px;
+        color: var(--medium-gray);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+      }
+
+
+      .sub-bar {
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+
+      .sub-bar-manage {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+      }
+
+      .manage-sub-button {
+        background: #f8f9fa;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .manage-sub-button:hover {
+        background: #e9ecef;
+        border-color: #dee2e6;
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      .manage-sub-button:active {
+        transform: scale(0.95);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      .manage-sub-button .material-icons {
+        font-size: 18px;
+        color: #6c757d;
+        transition: color 0.3s ease;
+      }
+
+      .manage-sub-button:hover .material-icons {
+        color: #495057;
+      }
+
+      /* Ensure other elements have proper spacing */
+      .sub-bar-general {
+        margin-left: 60px;
+        /* Add space for the manage button */
+      }
+    </style>
+  </div>
+  <!-- Sidebar placeholder -->
+  <div id="sidebar-container">
+    <!-- Sidebar Component -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-content">
+        <h3>القائمة الجانبية</h3>
+
+        <!-- User Info Section -->
+        <div class="user-info" id="userInfo">
+          <div class="user-avatar" id="sidebarUserAvatar">
+            <div class="avatar-circle" style="
+            width: 60px; 
+            height: 60px; 
+            background-color: #84CC16; 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            border-radius: 50%; 
+            font-weight: 600; 
+            font-family: 'Inter', sans-serif;
+        ">B</div>
+          </div>
+          <div class="user-name" id="sidebarUserName">Basil</div>
+          <div class="user-email" id="sidebarUserEmail">Basilbax0@gmail.com</div>
+        </div>
+
+        <!-- Navigation Items -->
+        <div class="nav-items-container">
+          <div class="nav-item">
+            <button class="nav-btn" id="profileBtn" onclick="window.location.href='../profile/profile.html'">
+              <span class="nav-btn-icon">
+                <i class="material-icons">person</i>
+              </span>
+              الملف الشخصي
+            </button>
+          </div>
+
+          <!-- Create New Project Button -->
+          <div class="nav-item">
+            <button class="nav-btn create-project-btn" id="createProjectBtn">
+              <span class="nav-btn-icon">
+                <i class="material-icons">add_circle</i>
+              </span>
+              إنشاء مشروع جديد
+            </button>
+          </div>
+
+          <!-- Invitations Button -->
+          <div class="nav-item">
+            <button class="nav-btn invitation-btn" id="invitationBtn">
+              <span class="nav-btn-icon">
+                <i class="material-icons">mail</i>
+              </span>
+              <span class="btn-text">الدعوات</span>
+              <span class="invitation-badge hidden" id="invitationBadge">0</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Logout Button at Bottom -->
+        <div class="logout-container">
+          <div class="nav-item">
+            <button class="nav-btn logout-btn" id="logoutBtn">
+              <span class="nav-btn-icon">
+                <i class="material-icons">logout</i>
+              </span>
+              تسجيل الخروج
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+      <span class="toggle-icon">
+        <img src="imge/arrow_down 1.svg" alt="☰" style="width: 28px; height: 28px;">
+        <span style="display: none; font-size: 24px; color: white;">☰</span>
+      </span>
+    </button>
+  </div>
+  <!-- Title Cards and Cards will be dynamically loaded here -->
+  <!-- Main Content -->
+
+
+  <main class="main-content">
+    <script src="../js/CardP.js"></script>
+    <script src="../js/avatar.js"></script>
+    <script src="../js/card-detail.js"></script>
+
+    <div class="title-card-container" data-sub-card-id="20">
+      <div class="title-card-bar" data-sub-card-id="20">
+
+        <div class="title-card-right">
+          <img src="imge/plus (1).svg" alt="Plus" onclick="showPopup('popup-views/card-type-content.html')"
+            class="add-btn create-card-btn">
+          <span class="title-card-label">HTML</span>
+          <span class="title-card-count">0</span>
+        </div>
+      </div>
+
+      <div class="card-grid" style="display: block;">
+        <div class="no-cards">لا توجد بطاقات</div>
+      </div>
+    </div>
+    <div class="title-card-container" data-sub-card-id="21">
+      <div class="title-card-bar" data-sub-card-id="21">
+
+        <div class="title-card-right">
+          <img src="imge/plus (1).svg" alt="Plus" onclick="showPopup('popup-views/card-type-content.html')"
+            class="add-btn create-card-btn">
+          <span class="title-card-label">CSS</span>
+          <span class="title-card-count">0</span>
+        </div>
+      </div>
+
+      <div class="card-grid" style="display: block;">
+        <div class="no-cards">لا توجد بطاقات</div>
+      </div>
+    </div>
+    <div class="title-card-container" data-sub-card-id="22">
+      <div class="title-card-bar" data-sub-card-id="22">
+
+        <div class="title-card-right">
+          <img src="imge/plus (1).svg" alt="Plus" onclick="showPopup('popup-views/card-type-content.html')"
+            class="add-btn create-card-btn">
+          <span class="title-card-label">JavaScript</span>
+          <span class="title-card-count">0</span>
+        </div>
+      </div>
+
+      <div class="card-grid" style="display: block;">
+        <div class="no-cards">لا توجد بطاقات</div>
+      </div>
+    </div>
+  </main>
+
+
+  <div id="popup-container"></div>
+
+
+
+
+
+  <script src="../js/script2.js"></script>
+  <script src="../js/popup.js"></script>
+  <script src="../js/close.js"></script>
+  <script src="../js/load-project.js"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,361 @@
+/* Sidebar Styles */
+.sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    right: -300px !important; /* Hidden by default */
+    width: 300px !important;
+    height: 100vh !important;
+    background: #fff !important;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1) !important;
+    transition: right 0.3s ease !important;
+    z-index: 1000 !important;
+    border-left: 1px solid #e0e0e0 !important;
+}
+
+.sidebar.open {
+    right: 0 !important; /* Slide in */
+}
+
+/* Main content adjustment when sidebar is open */
+body.sidebar-open .main-content,
+body.sidebar-open #main-bar-container,
+body.sidebar-open #sub-bar-container,
+body.sidebar-open #header-container {
+    margin-right: 300px !important;
+    transition: margin-right 0.3s ease !important;
+}
+
+/* Adjust card grid when sidebar is open */
+body.sidebar-open .cards-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    transition: grid-template-columns 0.3s ease !important;
+}
+
+.sidebar-content {
+    padding: 20px;
+    direction: rtl;
+    text-align: right;
+    height: calc(100vh - 40px);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-content h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Toggle Button */
+.sidebar-toggle {
+    position: fixed !important;
+    top: 50% !important;
+    right: 0px !important;
+
+    background: #00bfa5 !important;
+    border: none !important;
+    border-radius: 10% 0 0 10% !important;
+    width: 40px !important;
+    height: 60px !important;
+    color: white !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    z-index: 1001 !important;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.2) !important;
+    
+
+}
+
+
+
+.sidebar-toggle:hover {
+    background: #00a693 !important;
+    right: 15px !important;
+}
+
+.sidebar-toggle.moved {
+    right: 300px !important; /* Move exactly with sidebar */
+    
+}
+
+.sidebar-toggle.moved .toggle-icon {
+    transform: rotate(270deg) !important;
+    left: 15px;
+    
+}
+
+.toggle-icon {
+    transition: transform 0.3s ease;
+    display: block;
+    transform: rotate(90deg) !important;
+    filter: brightness(0) invert(1) !important; /* Makes icon white */
+}
+
+.toggle-icon img {
+width: 28px !important;
+    height: 28px !important;
+    display: block !important;
+    margin: 0 auto !important;
+}
+
+/* Sidebar Items */
+.sidebar-item {
+    margin-bottom: 15px;
+}
+
+/* Invitation Button */
+.invitation-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 24px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    direction: rtl;
+    min-height: 60px;
+    margin-bottom: 8px;
+}
+
+.invitation-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 184, 148, 0.3);
+}
+
+.invitation-btn:active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    font-size: 24px;
+    margin-left: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+}
+
+.btn-text {
+    flex: 1;
+    text-align: right;
+    margin-right: 12px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.invitation-badge {
+    background: var(--error-color);
+    color: white;
+    border-radius: 12px;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    min-width: 20px;
+    text-align: center;
+    display: inline-block;
+    margin-left: auto;
+}
+
+.invitation-badge.hidden {
+    display: none !important;
+}
+
+/* User Info Section */
+.user-info {
+    padding: 15px;
+    border-radius: 8px;
+    background: #f8f9fa;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.user-avatar {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+.user-name {
+    font-weight: 600;
+    color: #24292f;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.user-email {
+    font-size: 14px;
+    color: #656d76;
+}
+
+/* Navigation Items */
+.nav-item {
+    margin: 0 10px; /* Add horizontal margin */
+}
+
+.nav-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 25px 30px; /* Increased padding */
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: #24292f;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 20px; /* Increased font size */
+    min-height: 70px; /* Increased min-height */
+    position: relative;
+    overflow: visible;
+    margin-bottom: 0; /* Use gap from container for vertical spacing */
+}
+
+.nav-btn:hover {
+    background: #f3f4f6;
+    border-color: #d0d7de;
+}
+
+.nav-btn-icon {
+    margin-left: 16px;
+    font-size: 24px;
+    color: inherit;
+    min-width: 28px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ensure Material Icons are displayed correctly */
+.nav-btn .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 28px; /* Increased icon size */
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+}
+
+.nav-btn-icon i {
+    font-size: 28px; /* Increased icon size */
+    color: inherit;
+    display: block;
+    line-height: 1;
+    width: 28px; /* Increased icon size */
+    text-align: center;
+}
+
+/* Fix any potential CSS conflicts */
+.sidebar .nav-btn * {
+    pointer-events: none;
+}
+
+.sidebar .nav-btn {
+    pointer-events: all;
+}
+
+.logout-btn {
+    background: #da3633 !important;
+    color: white !important;
+    border-color: #da3633 !important;
+}
+
+.logout-btn:hover {
+    background: #c8302d !important;
+    border-color: #c8302d !important;
+}
+
+/* Navigation container styling */
+.nav-items-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.logout-container {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.create-project-btn {
+    background: #f0fdf4 !important;
+    color: var(--primary-color) !important;
+    border: 1px solid var(--primary-color) !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    pointer-events: all !important;
+}
+
+.create-project-btn:hover {
+    background: var(--primary-color) !important;
+    color: white !important;
+    border-color: var(--primary-color) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 184, 148, 0.2);
+}
+
+.create-project-btn:active {
+    transform: translateY(0);
+}
+
+/* Animation for validation errors */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+    20%, 40%, 60%, 80% { transform: translateX(3px); }
+}
+
+/* Input error state styling */
+input.error {
+    border: 2px solid #dc3545 !important;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+    background-color: #fff5f5 !important;
+    animation: shake 0.5s !important;
+}
+.sidebar.hidden {
+  transform: translateX(100%); /* يخفي الشريط الجانبي */
+  transition: transform 0.3s ease;
+}
+
+.sidebar {
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+}
+

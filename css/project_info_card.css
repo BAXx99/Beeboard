@@ -1,0 +1,665 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.project-info-modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.3);
+  justify-content: center;
+  align-items: center;
+  direction: rtl;
+}
+.project-info-modal.active {
+  display: flex;
+}
+.project-info-content {
+  background: #fff;
+  border-radius: 18px;
+  padding: 32px 40px;
+  width: 1000px;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  position: relative;
+  text-align: right;
+  font-family: 'Inter', sans-serif;
+}
+.close-btn {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  font-size: 28px;
+  color: #888;
+  cursor: pointer;
+}
+.project-info-content h2 {
+  margin: 0 0 12px 0;
+  font-size: 24px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+.project-info-content p {
+  margin: 0 0 18px 0;
+  color: #444;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+.project-info-members h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+#projectInfoMembers, #editProjectMembers {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#projectInfoMembers li, #editProjectMembers li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  padding: 12px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background: #fafbfc;
+  gap: 12px;
+}
+
+/* Member info structure */
+.member-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0; /* Allows text to truncate */
+}
+
+.member-details {
+  flex: 1;
+  min-width: 0;
+  color: #333;
+}
+
+.member-avatar {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.member-avatar-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+#projectInfoMembers li .member-icon {
+  margin-left: 8px;
+  font-size: 18px;
+}
+.member-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.member-actions button {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.remove-member {
+  background: #dc3545;
+  color: white;
+}
+
+.remove-member:hover {
+  background: #c82333;
+  transform: translateY(-1px);
+}
+
+.change-role {
+  background: #28a745;
+  color: white;
+}
+
+.change-role:hover {
+  background: #218838;
+  transform: translateY(-1px);
+}
+/* Removed add-member CSS as functionality is no longer used in create mode */
+#editProjectName, #editProjectDesc, #editProjectUrl {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+#editProjectDesc {
+  height: 80px;
+  resize: vertical;
+}
+#editProjectBtn, #saveProjectBtn, #cancelEditBtn {
+  padding: 10px 20px;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15.5px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+#editProjectBtn {
+  background: #2196F3;
+  color: white;
+}
+#saveProjectBtn {
+  background: #4CAF50;
+  color: white;
+}
+#cancelEditBtn {
+  background: #f44336;
+  color: white;
+}
+
+/* Role edit modal styles */
+.role-edit-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  font-family: 'Inter', sans-serif;
+}
+
+.role-edit-content {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  width: 1000px;
+  max-width: 90vw;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+.role-edit-content h3 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.role-edit-content input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+.role-edit-content input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.role-edit-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.role-edit-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+#roleEditSave {
+  background: var(--primary-color);
+  color: white;
+}
+
+#roleEditCancel {
+  background: #f0f0f0;
+  color: #666;
+}
+
+/* Edit form styles */
+.edit-form {
+  margin-bottom: 20px;
+}
+
+.edit-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Description editor styles (Trello-like) */
+.description-editor {
+  border: 2px solid #ddd;
+  border-radius: 3px;
+  overflow: hidden;
+  background: white;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 2px rgba(9, 30, 66, 0.25);
+  transition: border-color 0.2s ease;
+}
+
+.description-editor:focus-within {
+  border-color: #0079bf;
+  box-shadow: 0 0 0 2px rgba(0, 121, 191, 0.25);
+}
+
+.editor-toolbar {
+  background: #f4f5f7;
+  padding: 8px;
+  border-bottom: 1px solid #dfe1e6;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.toolbar-separator {
+  width: 1px;
+  height: 20px;
+  background: #dfe1e6;
+  margin: 0 4px;
+}
+
+.format-btn {
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 6px 8px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #5e6c84;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.format-btn:hover {
+  background: #e4e6ea;
+  color: #172b4d;
+}
+
+.format-btn:active,
+.format-btn.active {
+  background: #0079bf;
+  color: white;
+  border-color: #026aa7;
+}
+
+.rich-editor {
+  min-height: 100px;
+  max-height: 250px;
+  padding: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #172b4d;
+  overflow-y: auto;
+  outline: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background: #fafbfc;
+  transition: background-color 0.2s ease;
+}
+
+.rich-editor:focus {
+  background: #fff;
+}
+
+.rich-editor:empty:before {
+  content: attr(placeholder);
+  color: #5e6c84;
+  pointer-events: none;
+  font-style: italic;
+}
+
+.rich-editor ul,
+.rich-editor ol {
+  margin: 8px 0;
+  padding-right: 24px;
+}
+
+.rich-editor li {
+  margin: 4px 0;
+  line-height: 1.5;
+}
+
+.rich-editor strong {
+  font-weight: 600;
+  color: #172b4d;
+}
+
+.rich-editor em {
+  font-style: italic;
+}
+
+.rich-editor u {
+  text-decoration: underline;
+}
+
+.rich-editor a {
+  color: #0079bf;
+  text-decoration: none;
+}
+
+.rich-editor a:hover {
+  text-decoration: underline;
+}
+
+/* Project and member avatar styles */
+.project-avatar-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.member-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.member-avatar {
+  flex-shrink: 0;
+}
+
+.member-avatar-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e1e4e8;
+}
+
+.member-details {
+  flex: 1;
+}
+
+.member-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.member-row .member-info {
+  flex: 1;
+  gap: 8px;
+}
+
+.project-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.avatar-circle {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.avatar-circle:hover {
+  transform: scale(1.05);
+}
+
+/* Leave project button styling */
+.leave-project-btn {
+    background: #dc3545 !important;
+    color: white !important;
+    border: 2px solid #dc3545 !important;
+    margin-left: 10px !important;
+    padding: 10px 20px !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 500 !important;
+}
+
+.leave-project-btn:hover {
+    background: #c82333 !important;
+    border-color: #c82333 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3) !important;
+}
+
+.leave-project-btn:active {
+    transform: translateY(0) !important;
+}
+
+/* Admin toggle button styles */
+.admin-toggle {
+  background: #007bff !important;
+  color: white !important;
+  border: 1px solid #007bff !important;
+}
+.admin-toggle:hover {
+  background: #0056b3 !important;
+  border-color: #0056b3 !important;
+}
+.admin-toggle.promote-admin {
+  background: #28a745 !important;
+  border-color: #28a745 !important;
+}
+.admin-toggle.promote-admin:hover {
+  background: #1e7e34 !important;
+  border-color: #1e7e34 !important;
+}
+.admin-toggle.demote-admin {
+  background: #ffc107 !important;
+  color: #212529 !important;
+  border-color: #ffc107 !important;
+}
+.admin-toggle.demote-admin:hover {
+  background: #e0a800 !important;
+  border-color: #e0a800 !important;
+}
+
+/* Admin badge styling */
+.admin-badge {
+    background: var(--info-color, #17a2b8);
+    color: var(--text-light, #ffffff);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-right: 5px;
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Owner badge styling */
+.owner-badge {
+    background: var(--success-color, #28a745);
+    color: var(--text-light, #ffffff);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-right: 5px;
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Member badges styling */
+.owner-badge, .admin-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-right: 4px;
+  white-space: nowrap;
+}
+
+.owner-badge {
+  background: linear-gradient(135deg, #ffd700, #ffed4a);
+  color: #8b6914;
+  border: 1px solid #f6e05e;
+}
+
+.admin-badge {
+  background: linear-gradient(135deg, #4299e1, #63b3ed);
+  color: white;
+  border: 1px solid #3182ce;
+}
+
+/* Current user indicator styling */
+
+/* Admin promotion button styles */
+.admin-promotion-section {
+    margin: 16px 0;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.promote-admin-btn {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.promote-admin-btn:hover {
+    background: linear-gradient(135deg, #218838, #1ea085);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.promote-admin-btn:active {
+    transform: translateY(0);
+}
+
+/* Remove admin button styles */
+.remove-admin-btn {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.remove-admin-btn:hover {
+    background: linear-gradient(135deg, #c82333, #a71e2a);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.remove-admin-btn:active {
+    transform: translateY(0);
+}
+
+/* Fix member row alignment */
+.member-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.member-row .member-avatar {
+    flex-shrink: 0;
+}
+
+.member-row .member-info {
+    flex: 1;
+    min-width: 0; /* Allows text to truncate if needed */
+}
+
+.member-row .member-actions {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Style the "انت" indicator */
+.current-user-indicator {
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.member-actions span[style*="color: #888"] {
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+}

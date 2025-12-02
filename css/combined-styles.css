@@ -1,0 +1,23 @@
+/* Combined CSS file to reduce HTTP requests */
+
+/* Import all component styles */
+@import url('../../theme/colors.css');
+@import url('../../theme/arabic.css');
+@import url('../../theme/materialIcons.css');
+@import url('../components/header/header.css');
+@import url('../components/main-bar/main-bar.css');
+@import url('../components/sub-bar/sub-bar.css');
+@import url('../components/title-card/title-card.css');
+@import url('../components/title-card/ai-card-modal.css');
+@import url('../components/card/card.css');
+@import url('../components/side-bar/side-bar.css');
+@import url('../components/small_card/project_small_card/project_small_card.css');
+@import url('../components/small_card/member_small_card/member_small_card.css');
+@import url('../components/project_info-card/project_info_card.css');
+@import url('../components/create_card/CardS.css');
+@import url('../components/create_card/card-type-modal.css');
+@import url('../components/invitations/invitations_popup.css');
+@import url('../components/notification/notification.css');
+@import url('../components/avatar/avatar.css');
+@import url('../components/card-detail/card-detail.css');
+@import url('home.css');

@@ -1,0 +1,272 @@
+/* Card Component Styles */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    direction: rtl;
+    padding: 16px 0;
+}
+
+.card {
+  background: white;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 280px;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding: 12px 12px 0;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
+.three-dots {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.three-dots:hover {
+    background: #f5f5f5;
+}
+
+.dot {
+    width: 4px;
+    height: 4px;
+    background: #888;
+    border-radius: 50%;
+}
+
+.card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 12px 12px;
+    height: calc(280px - 40px);
+    overflow: hidden;
+}
+
+.card-description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.card-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.card-members {
+    display: flex;
+    align-items: center;
+}
+
+.members-avatars {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+}
+
+.member-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin-right: -8px;
+    position: relative;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.member-avatar:first-child {
+    margin-right: 0;
+}
+
+.member-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-tags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    max-width: 50%;
+}
+
+.card-tag {
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.card-image-body {
+    display: none;
+}
+
+/* Dropdown Menu Styles */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    min-width: 120px;
+    display: none;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: right;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background: #f5f5f5;
+}
+
+.dropdown-item.delete {
+    color: #d32f2f;
+}
+
+.dropdown-item.delete:hover {
+    background: #ffebee;
+}
+
+/* Image card styles */
+.card-image-preview {
+    position: relative;
+    margin-top: 8px;
+}
+
+.card-image-preview img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+}
+
+.card-image-preview .image-count {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Full image card styles */
+.card-body-image {
+    padding: 0;
+    position: relative;
+    height: calc(280px - 40px);
+}
+
+.card-image-full {
+    flex: 1;
+    position: relative;
+    height: 100%;
+}
+
+.card-image-full img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+    border-radius: 0;
+}
+
+.card-body-image .card-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    margin: 0;
+    padding: 8px 12px;
+    border-top: none;
+}
+
+/* Responsive Grid Layout */
+@media (max-width: 1200px) {
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
+
+/* No cards message styling */
+.no-cards {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+    font-size: 16px;
+    grid-column: 1 / -1; /* Span all columns */
+}

@@ -1,0 +1,26 @@
+#notification-container {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+}
+.notification {
+  min-width: 220px;
+  max-width: 350px;
+  background: #007bff;
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  opacity: 0.97;
+  transition: opacity 0.4s;
+  margin-bottom: 2px;
+}
+.notification-success { background: #28a745; }
+.notification-error { background: #dc3545; }
+.notification-info { background: #007bff; }

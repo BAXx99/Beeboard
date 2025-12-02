@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>الدعوات المغلقة</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+    .open-btn {
+      margin: 50px auto;
+      display: block;
+      padding: 10px 20px;
+      background-color: #00bfa6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(5px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal {
+      background-color: white;
+      border-radius: 10px;
+      width: 400px;
+      max-width: 90%;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      text-align: center;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .modal-header {
+      background-color: #00bfa6;
+      color: white;
+      padding: 10px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .modal-header .close-btn {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .modal-header .lock-icon {
+      font-size: 18px;
+    }
+
+    .modal-body {
+      padding: 30px 20px;
+      color: #888;
+      font-size: 16px;
+    }
+
+    .modal-body .folder-icon {
+      font-size: 40px;
+      color: #ccc;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="open-btn" onclick="openModal()">عرض الدعوات المغلقة</button>
+
+  <div class="overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <button class="close-btn" onclick="closeModal()">×</button>
+        <span>الدعوات المغلقة</span>
+        <span class="lock-icon">🔒</span>
+      </div>
+      <div class="modal-body">
+        <span class="folder-icon">📂</span>
+        لا توجد دعوات مغلقة
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal() {
+      document.getElementById("modalOverlay").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("modalOverlay").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
