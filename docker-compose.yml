@@ -1,0 +1,41 @@
+﻿services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./api:/var/www
+    environment:
+      - DB_HOST=mysql
+      - DB_NAME=beeboard_db
+      - DB_USER=beeboard_user
+      - DB_PASSWORD=beeboard_password
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: beeboard_db
+      MYSQL_USER: beeboard_user
+      MYSQL_PASSWORD: beeboard_password
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/init:/docker-entrypoint-initdb.d
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: beeboard_user
+      PMA_PASSWORD: beeboard_password
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:
