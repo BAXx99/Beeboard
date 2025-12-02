@@ -18,7 +18,7 @@ This project was part of my Front-End Developer internship at **SIT Solutions �
 - Improved user navigation and usability based on feedback from the development team.
 - Optimized structure for scalability and future back-end integration.
 
-## 📂 Project Structure
+
 
 ## 📸 Screenshots
 - dashboard
